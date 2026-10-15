@@ -134,12 +134,16 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout DrawerLayoutDetailed;
     private LinearLayout SubMenuCCTV;
     private LinearLayout SubMenuLocal;
+    private LinearLayout SubMenuBRTV;
+    private LinearLayout SubMenuK4;
     private TextView CoreText;
 
     private int menuOverlaySelectedIndex = 0;
     private int DrawerLayoutSelectedIndex = 0;
     private int SubMenuCCTVSelectedIndex = 0;
     private int SubMenuLocalSelectedIndex = 0;
+    private int SubMenuBRTVSelectedIndex = 0;
+    private int SubMenuK4SelectedIndex = 0;
 
     // 可自定义设置项
     private int TEXT_SIZE = 22;
@@ -217,6 +221,12 @@ public class MainActivity extends AppCompatActivity {
         // 初始化 Local 子菜单
         SubMenuLocal = findViewById(R.id.subMenuLocal);
 
+        // 初始化 BRTV 子菜单
+        SubMenuBRTV = findViewById(R.id.subMenuBRTV);
+
+        // 初始化 K4 子菜单
+        SubMenuK4 = findViewById(R.id.subMenuK4);
+
         // 初始化 CoreText
         CoreText = findViewById(R.id.CoreText);
 
@@ -224,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 中央台频道列表
         String[] firstDrawer = {
-                "央视频道", "地方频道"
+                "央视频道", "上星卫视", "北京地方台", "4K影视"
         };
 
         // 动态生成中央台按钮和地方台按钮
@@ -261,6 +271,8 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayout subMenuCCTV = findViewById(R.id.subMenuCCTV);
         LinearLayout subMenuLocal = findViewById(R.id.subMenuLocal);
+        LinearLayout subMenuBRTV = findViewById(R.id.subMenuBRTV);
+        LinearLayout subMenuK4 = findViewById(R.id.subMenuK4);
 
         // 中央台频道列表
         String[] cctvChannels = {
@@ -288,7 +300,7 @@ public class MainActivity extends AppCompatActivity {
             subMenuCCTV.addView(button);
         }
 
-        // 地方台频道列表
+        // 上星卫视频道列表
         String[] localChannels = {
                 "北京卫视", "东方卫视", "江苏卫视", "浙江卫视",
                 "湖南卫视", "河北卫视", "安徽卫视", "山东卫视",
@@ -296,17 +308,10 @@ public class MainActivity extends AppCompatActivity {
                 "湖北卫视", "东南卫视", "江西卫视", "辽宁卫视",
                 "广西卫视", "重庆卫视", "贵州卫视", "云南卫视",
                 "山西卫视", "黑龙江卫视", "海南卫视", "天津卫视",
-                "吉林卫视", "陕西卫视", "BRTV新闻", "BRTV文艺",
-                "BRTV影视", "BRTV财经", "BRTV生活", "BRTV体育",
-                "BRTV纪实", "卡酷少儿", "CCTV 4K", "CCTV-16 4K",
-                "北京卫视4K", "东方卫视4K", "江苏卫视4K", "浙江卫视4K",
-                "山东卫视4K", "湖南卫视4K", "四川卫视4K", "广东卫视4K",
-                "深圳卫视4K", "央视频4K风光", "央视频4K纪录", "央视频4K戏曲",
-                "广东影视", "浙江影视娱乐", "山东影视", "湖南电视剧频道",
-                "四川影视文艺", "广西影视"
+                "吉林卫视", "陕西卫视"
         };
 
-        // 动态生成地方台按钮
+        // 动态生成上星卫视按钮
         for (String channel : localChannels) {
             Button button = new Button(this);
             button.setText(channel);
@@ -321,6 +326,55 @@ public class MainActivity extends AppCompatActivity {
             button.setBackground(getResources().getDrawable(R.drawable.detailed_channel_selector));
             button.setTextSize(TEXT_SIZE);
             subMenuLocal.addView(button);
+        }
+
+        // 北京地方台频道列表
+        String[] brtvChannels = {
+                "BRTV新闻", "BRTV文艺", "BRTV影视", "BRTV财经",
+                "BRTV生活", "BRTV体育", "BRTV纪实", "卡酷少儿"
+        };
+
+        // 动态生成北京地方台按钮
+        for (String channel : brtvChannels) {
+            Button button = new Button(this);
+            button.setText(channel);
+            // 创建 LayoutParams 并设置 margin
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(4, 4, 4, 4);
+            // 设置按钮属性
+            button.setLayoutParams(layoutParams);
+            button.setPadding(16, 16, 16, 16);
+            button.setTextColor(getResources().getColor(android.R.color.white));
+            button.setBackground(getResources().getDrawable(R.drawable.detailed_channel_selector));
+            button.setTextSize(TEXT_SIZE);
+            subMenuBRTV.addView(button);
+        }
+
+        // 4K影视频道列表
+        String[] k4Channels = {
+                "CCTV 4K", "CCTV-16 4K", "北京卫视4K", "东方卫视4K",
+                "江苏卫视4K", "浙江卫视4K", "山东卫视4K", "湖南卫视4K",
+                "四川卫视4K", "广东卫视4K", "深圳卫视4K", "央视频4K风光",
+                "央视频4K纪录", "央视频4K戏曲", "广东影视", "浙江影视娱乐",
+                "山东影视", "湖南电视剧频道", "四川影视文艺", "广西影视"
+        };
+
+        // 动态生成4K影视按钮
+        for (String channel : k4Channels) {
+            Button button = new Button(this);
+            button.setText(channel);
+            // 创建 LayoutParams 并设置 margin
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(4, 4, 4, 4);
+            // 设置按钮属性
+            button.setLayoutParams(layoutParams);
+            button.setPadding(16, 16, 16, 16);
+            button.setTextColor(getResources().getColor(android.R.color.white));
+            button.setBackground(getResources().getDrawable(R.drawable.detailed_channel_selector));
+            button.setTextSize(TEXT_SIZE);
+            subMenuK4.addView(button);
         }
 
         // https://developer.android.com/reference/android/webkit/WebView.html#getCurrentWebViewPackage()
@@ -482,7 +536,7 @@ public class MainActivity extends AppCompatActivity {
                             info += elementValueNext;
                         }
                     });
-                } else if (currentLiveIndex <= 71) {
+                } else if (currentLiveIndex <= 43) {
                     // 获取当前节目
                     view.evaluateJavascript(
                             "document.getElementsByClassName(\"tvSelectJiemu\")[0].innerHTML + \" \" + document.getElementsByClassName(\"tvSelectJiemu\")[1].innerHTML",
@@ -496,16 +550,15 @@ public class MainActivity extends AppCompatActivity {
                 view.evaluateJavascript(
                         """
 
-                                     function AutoFullscreen(){
+                                     function AutoFullscreen(n){
+                                         if(n===undefined)n=0;
                                          var fullscreenBtn = document.querySelector('#player_pagefullscreen_yes_player')||document.querySelector('.videoFull');
                                          if(fullscreenBtn!=null){
-                                            //alert(fullscreenBtn)
                                           fullscreenBtn.click();
-                                          document.querySelector('video').volume=1;
-                                         }else{
-                                             setTimeout(
-                                                ()=>{ AutoFullscreen();}
-                                            ,16);
+                                          var v=document.querySelector('video');
+                                          if(v) v.volume=1;
+                                         }else if(n<100){
+                                             setTimeout(function(){AutoFullscreen(n+1);},16);
                                          }
                                      }
                                 AutoFullscreen()
@@ -614,7 +667,7 @@ public class MainActivity extends AppCompatActivity {
                             info += elementValueNext;
                         }
                     });
-                } else if (currentLiveIndex <= 71) {
+                } else if (currentLiveIndex <= 43) {
                     // 获取当前节目
                     view.evaluateJavascript(
                             "document.getElementsByClassName(\"tvSelectJiemu\")[0].innerHTML + \" \" + document.getElementsByClassName(\"tvSelectJiemu\")[1].innerHTML",
@@ -628,16 +681,15 @@ public class MainActivity extends AppCompatActivity {
                 view.evaluateJavascript(
                         """
 
-                                     function AutoFullscreen(){
+                                     function AutoFullscreen(n){
+                                         if(n===undefined)n=0;
                                          var fullscreenBtn = document.querySelector('#player_pagefullscreen_yes_player')||document.querySelector('.videoFull');
                                          if(fullscreenBtn!=null){
-                                            //alert(fullscreenBtn)
                                           fullscreenBtn.click();
-                                          document.querySelector('video').volume=1;
-                                         }else{
-                                             setTimeout(
-                                                ()=>{ AutoFullscreen();}
-                                            ,16);
+                                          var v=document.querySelector('video');
+                                          if(v) v.volume=1;
+                                         }else if(n<100){
+                                             setTimeout(function(){AutoFullscreen(n+1);},16);
                                          }
                                      }
                                 AutoFullscreen()
@@ -730,7 +782,7 @@ public class MainActivity extends AppCompatActivity {
                                 simulateTouch(webView0, 0.5f, 0.5f);
                             }
                         });
-            } else if (currentLiveIndex <= 71) {
+            } else if (currentLiveIndex <= 43) {
                 String scriptPlay = """
                         try{
                         if(document.querySelector('.voice.on').style.display == 'none'){
@@ -791,7 +843,7 @@ public class MainActivity extends AppCompatActivity {
                             // 播放
                             if (currentLiveIndex <= 17) {
                                 simulateTouch(getCurrentWebview(), 0.5f, 0.5f);
-                            } else if (currentLiveIndex <= 71) {
+                            } else if (currentLiveIndex <= 43) {
                                 String scriptPause = """
                                         try{
                                         document.querySelector('.play.play2').click();
@@ -821,7 +873,7 @@ public class MainActivity extends AppCompatActivity {
 
                             if (currentLiveIndex <= 17) {
                                 getCurrentWebview().evaluateJavascript(script1, null);
-                            } else if (currentLiveIndex <= 71) {
+                            } else if (currentLiveIndex <= 43) {
                                 new Handler().postDelayed(() -> {
                                     getCurrentWebview().evaluateJavascript(script2, null);
                                 }, 500);
@@ -886,6 +938,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
             if (DrawerLayout.hasFocus() && !SubMenuCCTV.hasFocus() && !SubMenuLocal.hasFocus()
+                    && !SubMenuBRTV.hasFocus() && !SubMenuK4.hasFocus()
                     && !DrawerLayoutDetailed.hasFocus()) {
                 // DrawerLayout具有焦点
                 if (event.getKeyCode() == KeyEvent.KEYCODE_BACK || event.getKeyCode() == KeyEvent.KEYCODE_DPAD_LEFT
@@ -898,12 +951,12 @@ public class MainActivity extends AppCompatActivity {
                     // 方向键,切换频道选择
                     if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_UP) {
                         if (DrawerLayoutSelectedIndex == 0) {
-                            DrawerLayoutSelectedIndex = 2;
+                            DrawerLayoutSelectedIndex = 4;
                         } else {
                             DrawerLayoutSelectedIndex--;
                         }
                     } else if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_DOWN) {
-                        if (DrawerLayoutSelectedIndex == 2) {
+                        if (DrawerLayoutSelectedIndex == 4) {
                             DrawerLayoutSelectedIndex = 0;
                         } else {
                             DrawerLayoutSelectedIndex++;
@@ -917,24 +970,58 @@ public class MainActivity extends AppCompatActivity {
                     // 中间键,执行按钮操作
                     switch (DrawerLayoutSelectedIndex) {
                         case 0:
-                            // 中央频道
+                            // 央视频道
                             DrawerLayoutDetailed.setVisibility(View.VISIBLE);
                             findViewById(R.id.subMenuCCTV).setVisibility(View.VISIBLE);
                             findViewById(R.id.CCTVScroll).setVisibility(View.VISIBLE);
                             findViewById(R.id.subMenuLocal).setVisibility(View.GONE);
                             findViewById(R.id.LocalScroll).setVisibility(View.GONE);
+                            findViewById(R.id.subMenuBRTV).setVisibility(View.GONE);
+                            findViewById(R.id.BRTVScroll).setVisibility(View.GONE);
+                            findViewById(R.id.subMenuK4).setVisibility(View.GONE);
+                            findViewById(R.id.K4Scroll).setVisibility(View.GONE);
                             SubMenuCCTV.getChildAt(SubMenuCCTVSelectedIndex).requestFocus();
                             break;
                         case 1:
-                            // 地方频道
+                            // 上星卫视
                             DrawerLayoutDetailed.setVisibility(View.VISIBLE);
                             findViewById(R.id.subMenuCCTV).setVisibility(View.GONE);
                             findViewById(R.id.CCTVScroll).setVisibility(View.GONE);
                             findViewById(R.id.subMenuLocal).setVisibility(View.VISIBLE);
                             findViewById(R.id.LocalScroll).setVisibility(View.VISIBLE);
+                            findViewById(R.id.subMenuBRTV).setVisibility(View.GONE);
+                            findViewById(R.id.BRTVScroll).setVisibility(View.GONE);
+                            findViewById(R.id.subMenuK4).setVisibility(View.GONE);
+                            findViewById(R.id.K4Scroll).setVisibility(View.GONE);
                             SubMenuLocal.getChildAt(SubMenuLocalSelectedIndex).requestFocus();
                             break;
                         case 2:
+                            // 北京地方台
+                            DrawerLayoutDetailed.setVisibility(View.VISIBLE);
+                            findViewById(R.id.subMenuCCTV).setVisibility(View.GONE);
+                            findViewById(R.id.CCTVScroll).setVisibility(View.GONE);
+                            findViewById(R.id.subMenuLocal).setVisibility(View.GONE);
+                            findViewById(R.id.LocalScroll).setVisibility(View.GONE);
+                            findViewById(R.id.subMenuBRTV).setVisibility(View.VISIBLE);
+                            findViewById(R.id.BRTVScroll).setVisibility(View.VISIBLE);
+                            findViewById(R.id.subMenuK4).setVisibility(View.GONE);
+                            findViewById(R.id.K4Scroll).setVisibility(View.GONE);
+                            SubMenuBRTV.getChildAt(SubMenuBRTVSelectedIndex).requestFocus();
+                            break;
+                        case 3:
+                            // 4K影视
+                            DrawerLayoutDetailed.setVisibility(View.VISIBLE);
+                            findViewById(R.id.subMenuCCTV).setVisibility(View.GONE);
+                            findViewById(R.id.CCTVScroll).setVisibility(View.GONE);
+                            findViewById(R.id.subMenuLocal).setVisibility(View.GONE);
+                            findViewById(R.id.LocalScroll).setVisibility(View.GONE);
+                            findViewById(R.id.subMenuBRTV).setVisibility(View.GONE);
+                            findViewById(R.id.BRTVScroll).setVisibility(View.GONE);
+                            findViewById(R.id.subMenuK4).setVisibility(View.VISIBLE);
+                            findViewById(R.id.K4Scroll).setVisibility(View.VISIBLE);
+                            SubMenuK4.getChildAt(SubMenuK4SelectedIndex).requestFocus();
+                            break;
+                        case 4:
                             // 打开设置
                             showChannelList();
                             showMenuOverlay();
@@ -1013,12 +1100,12 @@ public class MainActivity extends AppCompatActivity {
                     // 方向键,切换频道选择
                     if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_UP) {
                         if (SubMenuLocalSelectedIndex == 0) {
-                            SubMenuLocalSelectedIndex = 53;
+                            SubMenuLocalSelectedIndex = 25;
                         } else {
                             SubMenuLocalSelectedIndex--;
                         }
                     } else if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_DOWN) {
-                        if (SubMenuLocalSelectedIndex == 53) {
+                        if (SubMenuLocalSelectedIndex == 25) {
                             SubMenuLocalSelectedIndex = 0;
                         } else {
                             SubMenuLocalSelectedIndex++;
@@ -1031,6 +1118,100 @@ public class MainActivity extends AppCompatActivity {
                         || event.getKeyCode() == KeyEvent.KEYCODE_DPAD_RIGHT) {
                     // 中间键,执行按钮操作
                     currentLiveIndex = SubMenuLocalSelectedIndex + 18;
+                    loadLiveUrl();
+                    saveCurrentLiveIndex();
+                    showChannelList();
+                    return true;
+                }
+            } else if (SubMenuBRTV.hasFocus()) {
+                if (event.getKeyCode() == KeyEvent.KEYCODE_BACK || event.getKeyCode() == KeyEvent.KEYCODE_B) {
+                    if (enableDirectBack) {
+                        showChannelList();
+                        return true;
+                    } else {
+                        // 按下返回键
+                        DrawerLayout.getChildAt(DrawerLayoutSelectedIndex).requestFocus();
+                        SubMenuBRTV.setVisibility(View.GONE);
+                        DrawerLayoutDetailed.setVisibility(View.GONE);
+                        findViewById(R.id.BRTVScroll).setVisibility(View.GONE);
+                        return true;
+                    }
+                } else if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_LEFT) {
+                    DrawerLayout.getChildAt(DrawerLayoutSelectedIndex).requestFocus();
+                    SubMenuBRTV.setVisibility(View.GONE);
+                    DrawerLayoutDetailed.setVisibility(View.GONE);
+                    findViewById(R.id.BRTVScroll).setVisibility(View.GONE);
+                    return true;
+                } else if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_UP
+                        || event.getKeyCode() == KeyEvent.KEYCODE_DPAD_DOWN) {
+                    // 方向键,切换频道选择
+                    if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_UP) {
+                        if (SubMenuBRTVSelectedIndex == 0) {
+                            SubMenuBRTVSelectedIndex = 7;
+                        } else {
+                            SubMenuBRTVSelectedIndex--;
+                        }
+                    } else if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_DOWN) {
+                        if (SubMenuBRTVSelectedIndex == 7) {
+                            SubMenuBRTVSelectedIndex = 0;
+                        } else {
+                            SubMenuBRTVSelectedIndex++;
+                        }
+                    }
+                    SubMenuBRTV.getChildAt(SubMenuBRTVSelectedIndex).requestFocus();
+                    return true;
+                } else if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER
+                        || event.getKeyCode() == KeyEvent.KEYCODE_ENTER
+                        || event.getKeyCode() == KeyEvent.KEYCODE_DPAD_RIGHT) {
+                    // 中间键,执行按钮操作
+                    currentLiveIndex = SubMenuBRTVSelectedIndex + 44;
+                    loadLiveUrl();
+                    saveCurrentLiveIndex();
+                    showChannelList();
+                    return true;
+                }
+            } else if (SubMenuK4.hasFocus()) {
+                if (event.getKeyCode() == KeyEvent.KEYCODE_BACK || event.getKeyCode() == KeyEvent.KEYCODE_B) {
+                    if (enableDirectBack) {
+                        showChannelList();
+                        return true;
+                    } else {
+                        // 按下返回键
+                        DrawerLayout.getChildAt(DrawerLayoutSelectedIndex).requestFocus();
+                        SubMenuK4.setVisibility(View.GONE);
+                        DrawerLayoutDetailed.setVisibility(View.GONE);
+                        findViewById(R.id.K4Scroll).setVisibility(View.GONE);
+                        return true;
+                    }
+                } else if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_LEFT) {
+                    DrawerLayout.getChildAt(DrawerLayoutSelectedIndex).requestFocus();
+                    SubMenuK4.setVisibility(View.GONE);
+                    DrawerLayoutDetailed.setVisibility(View.GONE);
+                    findViewById(R.id.K4Scroll).setVisibility(View.GONE);
+                    return true;
+                } else if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_UP
+                        || event.getKeyCode() == KeyEvent.KEYCODE_DPAD_DOWN) {
+                    // 方向键,切换频道选择
+                    if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_UP) {
+                        if (SubMenuK4SelectedIndex == 0) {
+                            SubMenuK4SelectedIndex = 19;
+                        } else {
+                            SubMenuK4SelectedIndex--;
+                        }
+                    } else if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_DOWN) {
+                        if (SubMenuK4SelectedIndex == 19) {
+                            SubMenuK4SelectedIndex = 0;
+                        } else {
+                            SubMenuK4SelectedIndex++;
+                        }
+                    }
+                    SubMenuK4.getChildAt(SubMenuK4SelectedIndex).requestFocus();
+                    return true;
+                } else if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER
+                        || event.getKeyCode() == KeyEvent.KEYCODE_ENTER
+                        || event.getKeyCode() == KeyEvent.KEYCODE_DPAD_RIGHT) {
+                    // 中间键,执行按钮操作
+                    currentLiveIndex = SubMenuK4SelectedIndex + 52;
                     loadLiveUrl();
                     saveCurrentLiveIndex();
                     showChannelList();
@@ -1110,25 +1291,41 @@ public class MainActivity extends AppCompatActivity {
             DrawerLayoutDetailed.setVisibility(View.VISIBLE);
             DrawerLayout.setVisibility(View.VISIBLE);
             isDrawerOverlayVisible = true;
-            if (currentLiveIndex < 18) {
+            if (currentLiveIndex <= 17) {
                 SubMenuCCTV.setVisibility(View.VISIBLE);
                 findViewById(R.id.CCTVScroll).setVisibility(View.VISIBLE);
                 SubMenuCCTV.getChildAt(currentLiveIndex).requestFocus();
                 SubMenuCCTVSelectedIndex = currentLiveIndex;
                 DrawerLayoutSelectedIndex = 0;
-            } else {
+            } else if (currentLiveIndex <= 43) {
                 SubMenuLocal.setVisibility(View.VISIBLE);
                 findViewById(R.id.LocalScroll).setVisibility(View.VISIBLE);
                 SubMenuLocal.getChildAt(currentLiveIndex - 18).requestFocus();
                 SubMenuLocalSelectedIndex = currentLiveIndex - 18;
                 DrawerLayoutSelectedIndex = 1;
+            } else if (currentLiveIndex <= 51) {
+                SubMenuBRTV.setVisibility(View.VISIBLE);
+                findViewById(R.id.BRTVScroll).setVisibility(View.VISIBLE);
+                SubMenuBRTV.getChildAt(currentLiveIndex - 44).requestFocus();
+                SubMenuBRTVSelectedIndex = currentLiveIndex - 44;
+                DrawerLayoutSelectedIndex = 2;
+            } else {
+                SubMenuK4.setVisibility(View.VISIBLE);
+                findViewById(R.id.K4Scroll).setVisibility(View.VISIBLE);
+                SubMenuK4.getChildAt(currentLiveIndex - 52).requestFocus();
+                SubMenuK4SelectedIndex = currentLiveIndex - 52;
+                DrawerLayoutSelectedIndex = 3;
             }
         } else {
             DrawerLayout.setVisibility(View.GONE);
             SubMenuCCTV.setVisibility(View.GONE);
             SubMenuLocal.setVisibility(View.GONE);
+            SubMenuBRTV.setVisibility(View.GONE);
+            SubMenuK4.setVisibility(View.GONE);
             findViewById(R.id.LocalScroll).setVisibility(View.GONE);
             findViewById(R.id.CCTVScroll).setVisibility(View.GONE);
+            findViewById(R.id.BRTVScroll).setVisibility(View.GONE);
+            findViewById(R.id.K4Scroll).setVisibility(View.GONE);
             DrawerLayoutDetailed.setVisibility(View.GONE);
             isDrawerOverlayVisible = false;
         }
@@ -1140,25 +1337,41 @@ public class MainActivity extends AppCompatActivity {
             DrawerLayoutDetailed.setVisibility(View.VISIBLE);
             DrawerLayout.setVisibility(View.VISIBLE);
             isDrawerOverlayVisible = true;
-            if (selectIndex < 18) {
+            if (selectIndex <= 17) {
                 SubMenuCCTV.setVisibility(View.VISIBLE);
                 findViewById(R.id.CCTVScroll).setVisibility(View.VISIBLE);
                 SubMenuCCTV.getChildAt(selectIndex).requestFocus();
                 SubMenuCCTVSelectedIndex = selectIndex;
                 DrawerLayoutSelectedIndex = 0;
-            } else {
+            } else if (selectIndex <= 43) {
                 SubMenuLocal.setVisibility(View.VISIBLE);
                 findViewById(R.id.LocalScroll).setVisibility(View.VISIBLE);
                 SubMenuLocal.getChildAt(selectIndex - 18).requestFocus();
                 SubMenuLocalSelectedIndex = selectIndex - 18;
                 DrawerLayoutSelectedIndex = 1;
+            } else if (selectIndex <= 51) {
+                SubMenuBRTV.setVisibility(View.VISIBLE);
+                findViewById(R.id.BRTVScroll).setVisibility(View.VISIBLE);
+                SubMenuBRTV.getChildAt(selectIndex - 44).requestFocus();
+                SubMenuBRTVSelectedIndex = selectIndex - 44;
+                DrawerLayoutSelectedIndex = 2;
+            } else {
+                SubMenuK4.setVisibility(View.VISIBLE);
+                findViewById(R.id.K4Scroll).setVisibility(View.VISIBLE);
+                SubMenuK4.getChildAt(selectIndex - 52).requestFocus();
+                SubMenuK4SelectedIndex = selectIndex - 52;
+                DrawerLayoutSelectedIndex = 3;
             }
         } else {
             DrawerLayout.setVisibility(View.GONE);
             SubMenuCCTV.setVisibility(View.GONE);
             SubMenuLocal.setVisibility(View.GONE);
+            SubMenuBRTV.setVisibility(View.GONE);
+            SubMenuK4.setVisibility(View.GONE);
             findViewById(R.id.LocalScroll).setVisibility(View.GONE);
             findViewById(R.id.CCTVScroll).setVisibility(View.GONE);
+            findViewById(R.id.BRTVScroll).setVisibility(View.GONE);
+            findViewById(R.id.K4Scroll).setVisibility(View.GONE);
             DrawerLayoutDetailed.setVisibility(View.GONE);
             isDrawerOverlayVisible = false;
         }

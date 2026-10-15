@@ -284,13 +284,37 @@
                     android:orientation="vertical" />
             </ScrollView>
 
-            <!-- 地方频道的二级菜单 -->
+            <!-- 上星卫视的二级菜单 -->
             <ScrollView
                 android:id="@+id/LocalScroll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:id="@+id/subMenuLocal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
+
+            <!-- 北京地方台的二级菜单 -->
+            <ScrollView
+                android:id="@+id/BRTVScroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/subMenuBRTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
+
+            <!-- 4K影视的二级菜单 -->
+            <ScrollView
+                android:id="@+id/K4Scroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/subMenuK4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
